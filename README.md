@@ -30,3 +30,6 @@ docker compose up
 ```
 3. The application will be available at `http://localhost:8000`
 
+## API Documentation
+Here's a link to the [API documentation](https://documenter.getpostman.com/view/23964763/2sAYJ7hzCv)
+
