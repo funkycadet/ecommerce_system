@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:13
+    container_name: product-api-db
+    restart: unless-stopped
+    ports:
+      - 5434:5432
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
