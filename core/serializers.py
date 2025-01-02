@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework_json_api import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
 from django.contrib.auth.password_validation import validate_password
@@ -18,6 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
+        validated_data.pop('password2', None)
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email']
@@ -31,3 +32,9 @@ class UserSerializer(serializers.ModelSerializer):
         return {
             'access_token': str(token),
         }
+     
+    class JSONAPIMeta:
+        included_resources = []
+
+
+

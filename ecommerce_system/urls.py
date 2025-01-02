@@ -20,6 +20,7 @@ from django.urls import path
 from rest_framework import routers
 from core.views import LoginView, SignupView
 from products.views import CategoryView, ProductView, DiscountView
+from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter()
 
@@ -31,5 +32,6 @@ urlpatterns = [
     path("auth/signup", SignupView.as_view(), name="signup"),
     path("categories", CategoryView.as_view()),
     path("products", ProductView.as_view()),
+    # path("products/<:id>", ProductView.as_view()),
     path("discounts", DiscountView.as_view()),
 ]

@@ -12,12 +12,14 @@ class Category(Model, ActivatorModel, TimeStampedModel, TitleDescriptionModel):
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-        ordering = ["id"]
+        # ordering = ["created_at"]
 
     description = models.TextField(blank=True, null=True)
     parent = models.ForeignKey(
         'self', on_delete=models.SET_NULL, null=True, blank=True, related_name='subcategories'
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField()
 
     def __str__(self) -> str:
         return f'{self.title}'
@@ -28,13 +30,14 @@ class Product(Model, ActivatorModel, TimeStampedModel, TitleDescriptionModel):
     class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
-        ordering = ["id"]
+        # ordering = ["created_at"]
 
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = models.PositiveIntegerField()
-    created = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField()
 
     def __str__(self) -> str:
         return f'{self.title}'
@@ -56,13 +59,15 @@ class Discount(Model, TimeStampedModel, TitleDescriptionModel):
     class Meta:
         verbose_name = 'Discount'
         verbose_name_plural = 'Discounts'
-        ordering = ["id"]
+        # ordering = ["created_at"]
     
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='discounts')
     discount_type = models.CharField(
         max_length=10, choices=[('percentage', 'Percentage'), ('fixed', 'Fixed')]
     )
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    # updated_at = models.DateTimeField(updated_at=True)
 
     def calculate_discounted_price(self, price):
         if self.discount_type == 'percentage':
