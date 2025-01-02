@@ -1,8 +1,7 @@
 # E-Commerce Product Management System
 
 ## Description
-This is a simple product management system for an e-commerce website. It allows users to add, edit, and delete products. The system also allows users to view a list of all products and search for products by name.
-
+This is a simple product management system for an e-commerce website. It allows users to add products, discounts and categories. The system also allows users to view a list of all products, search for a single product as well as get all categories.
 ## Features
 - Add a product 
 - Edit a product 
